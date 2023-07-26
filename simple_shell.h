@@ -12,10 +12,14 @@
 #include <signal.h>
 #include <stdbool.h>
 
+
 void print_result(int n);
 int main(int ac, char **av, char *envp[]);
 void handle_signal(int n);
 void prompt(void);
+void execution_prog(char *cp, char **cmd);
+void buffers(char **buffer);
+
 /**
  * struct builtin - defining builtin
  * @env: biultin function
