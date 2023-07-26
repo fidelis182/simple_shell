@@ -12,6 +12,7 @@
 #include <signal.h>
 #include <stdbool.h>
 
+extern char **environ;
 
 void print_result(int n);
 int main(int ac, char **av, char *envp[]);
