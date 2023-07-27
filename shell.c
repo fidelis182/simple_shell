@@ -3,42 +3,50 @@
  * main - the entry to the program
  * @ac: the number of argument
  * @av: list of arg or prog
- * @envp: environment vector
  * Return: last executed command
  */
 
-int main(int ac, char **av, char *envp[])
+int main(int ac, char *av[])
 {
-	char *line = NULL, *pathcommand = NULL, *path = NULL;
-	size_t buffer = 0;
-	ssize_t line_size = 0;
-	char **command = NULL, **paths = NULL;
-	(void)envp, (void)av;
+	char *prompt = "fidie$ ", *ln = "\n";
+	int rep = 0, reppin, *addrep = &reppin;
+	char *s;
 
-	if (ac < 1)
-		return (-1);
+	global_alias = NULL, global_history = 1, s = av[0];
 	signal(SIGINT, handle_signal);
+	*addrep = 0;
+	environ = copy_env();
+	if (!environ)
+		exit(-20);
+	if (ac != 1)
+	{
+		rep = file_comment(av[1], addrep);
+		free_env();
+		free_list(global_alias);
+		return (*addrep);
+	}
+	if (!isatty(STDIN_FILENO))
+	{
+		while (rep != -2 && rep != -3)
+			rep = arguments(addrep);
+		free_env();
+		free_list(global_alias);
+		return (*addrep);
+	}
 	while (1)
 	{
-		buffers(command);
-		buffers(paths);
-		free(pathcommand);
-		prompt();
-		line_size = getline(&line, &buffer, stdin);
-		if (line_size < 0)
-			break;
-		info.ln_count++;
-		if (line[line_size - 1] == '\n')
-			line[line_size - 1] = '\0';
-		if (command == NULL || *command == NULL || **command == '\0')
-			continue;
-		if (!pathcommand)
-			perror(av[0]);
-		else
-			execution_prog(pathcommand, command);
+		write(STDOUT_FILENO, prompt, 8);
+		rep = arguments(addrep);
+		if (rep == -2 || rep == -3)
+		{
+			if (rep == -2)
+				write(STDOUT_FILENO, ln, 1);
+			free_env();
+			free_list(global_alias);
+			exit(*addrep);
+		}
 	}
-	if (line_size < 0 && flags.interactive)
-		write(STDERR_FILENO, "\n", 1);
-	free(line);
-	return (0);
+	free_env();
+	free_list(global_alias);
+	return (*addrep);
 }
