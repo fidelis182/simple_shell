@@ -37,9 +37,9 @@ char *testpath(char **path, char *cd)
 	int x = 0;
 	char *output;
 
-	while (path[i])
+	while (path[x])
 	{
-		output = _append_path(path[i], cd);
+		output = _append_path(path[x], cd);
 		if (access(output, F_OK | X_OK) == 0)
 			return (output);
 		free(output);
@@ -68,7 +68,7 @@ char *_append_path(char *path, char *cmd)
 		path = "";
 
 	buff = malloc(sizeof(char) * (_strlen(path) + _strlen(cmd) + 2));
-	if (!buffer)
+	if (!buff)
 		return (NULL);
 
 	while (path[i])

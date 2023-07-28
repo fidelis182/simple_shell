@@ -14,7 +14,7 @@ void execution_prog(char *command, char **cmd)
 
 	pid = fork();
 	if (pid < 0)
-		perror(cp);
+		perror(command);
 	if (pid == 0)
 	{
 		execve(command, cmd, env);

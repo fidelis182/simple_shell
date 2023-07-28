@@ -29,6 +29,7 @@ struct flags
 	bool interactive;
 } flags;
 
+extern char **environ;
 int biultin_checker(char **cmd, char *buf);
 int builtin_func(char **cmd, char *new_line);
 void exitcmd(char **cmd, char *newline);

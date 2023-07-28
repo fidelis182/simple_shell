@@ -31,10 +31,10 @@ int main(int ac, char **av, char *envp[])
 		info.ln_count++;
 		if (new_line[linesize - 1] == '\n')
 			new_line[linesize - 1] = '\0';
-		command = tokenizing(line);
+		command = tokenizing(new_line);
 		if (command == NULL || *command == NULL || **command == '\0')
 			continue;
-		if (biultin_checker(command, line))
+		if (biultin_checker(command, new_line))
 			continue;
 		path = findpath();
 		paths = tokenizing(path);

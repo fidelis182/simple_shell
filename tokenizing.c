@@ -1,4 +1,4 @@
-#include "simple-shell.h"
+#include "simple_shell.h"
 
 /**
 * tokenizing - creates tokens from given input
@@ -16,7 +16,7 @@ char **tokenizing(char *new_line)
 	buffer = _strdup(new_line);
 	if (!buffer)
 		return (NULL);
-	buff = bufferr;
+	buff = buffer;
 
 	while (*buff)
 	{

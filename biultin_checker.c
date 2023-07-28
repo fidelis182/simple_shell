@@ -1,4 +1,4 @@
-#include "simple_shell.c"
+#include "simple_shell.h"
 /**
  *biultin_checker- checks to see weather its a built in function
  *@cmd: tokenized user input
