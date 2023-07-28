@@ -7,7 +7,7 @@
  */
 char **_replace_alias(char **args)
 {
-	alias_t *temp_alias;
+	alias *temp_alias;
 	int i;
 	char *new_value;
 
@@ -46,7 +46,7 @@ char **_replace_alias(char **args)
  */
 void set_alias(char *s, char *count)
 {
-	alias_t *temp_alias = global_alias;
+	alias *temp_alias = global_alias;
 	int length, j, k;
 	char *new_count;
 
@@ -84,7 +84,7 @@ void set_alias(char *s, char *count)
  */
 int builtin_alias(char **args, char __attribute__((__unused__)) **begin)
 {
-	alias_t *temp_alias = global_alias;
+	alias *temp_alias = global_alias;
 	int i, ret = 0;
 	char *count;
 
@@ -125,7 +125,7 @@ int builtin_alias(char **args, char __attribute__((__unused__)) **begin)
  * print_alias - prints alias in source to value format.
  * @alias: pointer to alias.
  */
-void print_alias(alias_t *alias)
+void print_alias(alias *alias)
 {
 	char *alias_str;
 	int length = _strlen(alias->s) + _strlen(alias->count + 4;

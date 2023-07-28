@@ -49,7 +49,7 @@ int generate_error(char **args, int error_value)
 char *_itoa(int num)
 {
 	char *buff;
-	int length = num_len(num);
+	int length = num_length(num);
 	unsigned int num1;
 
 	buff = malloc(sizeof(char) * (length + 1));

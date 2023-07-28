@@ -6,7 +6,7 @@
  */
 int free_list(list_t *head)
 {
-	list_t *another;
+	list *another;
 
 	while (head)
 	{

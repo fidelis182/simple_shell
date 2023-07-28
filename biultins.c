@@ -6,7 +6,7 @@
  */
 int (*get_builtin(char *command))(char **args, char **begin)
 {
-	biultin_t builtin_funcs[] = {
+	biultin builtin_funcs[] = {
 		{ "cd", biultin_command},
 		{ "env", create_env},
 		{ "exit", exit_biultin },

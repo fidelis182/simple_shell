@@ -1,6 +1,6 @@
 #include "simple_shell.h"
 /**
- * strlen - prints the length of the array
+ * str_len - prints the length of the array
  * @c: a pointer the character we want to get it`s length
  *
  * Return: length 'b'
