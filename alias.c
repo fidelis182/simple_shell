@@ -20,10 +20,10 @@ char **_replace_alias(char **args)
 		{
 			if (_strcmp(args[i], temp_alias->s) == 0)
 			{
-				new_value = malloc(sizeof(char) * (_strlen(temp_alias->count) + 1));
+				new_value = malloc(sizeof(char) * (str_len(temp_alias->count) + 1));
 				if (!new_value)
 				{
-					free_args(args, args);
+					run_args(args, args);
 					return (NULL);
 				}
 				_strcpy(new_value, temp_alias->count);
@@ -75,6 +75,7 @@ void set_alias(char *s, char *count)
 	if (!temp_alias)
 		add_alias_end(&global_alias, s, new_count);
 }
+
 
 /**
  * builtin_alias - builtin command  used to print all global_alias or set alias
@@ -128,7 +129,7 @@ int builtin_alias(char **args, char __attribute__((__unused__)) **begin)
 void print_alias(alias *alias)
 {
 	char *alias_str;
-	int length = _strlen(alias->s) + _strlen(alias->count + 4;
+	int length = _strlen(alias->s) + _strlen(alias->count) + 4;
 
 	alias_str = malloc(sizeof(char) * (length + 1));
 	if (!alias_str)
@@ -140,4 +141,5 @@ void print_alias(alias *alias)
 
 	write(STDOUT_FILENO, alias_str, length);
 	free(alias_str);
+
 }

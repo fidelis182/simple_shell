@@ -14,7 +14,7 @@ char *command_error(char **args)
 	if (!history_str)
 		return (NULL);
 
-	length = _strlen(so) + _strlen(history_str) + _strlen(args[0]) + 16;
+	length = str_len(s) + str_len(history_str) + str_len(args[0]) + 16;
 	err = malloc(sizeof(char) * (length + 1));
 	if (!err)
 	{

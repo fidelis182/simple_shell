@@ -10,20 +10,19 @@ void free_env(void)
 	while (environ[index])
 	{
 		free(environ[index]);
-		ind++;
+		index++;
 	}
 	free(environ);
 }
 /**
  * get_env - getting the envir variable
- * @indx: environment variable to get
+ * @index: environment variable to get
  * Return: pointer to envir variable
  */
 char **get_env(char *index)
 {
 	int ind = 0, len;
-
-	len = _strlen(index);
+	len = str_len(index);
 
 	while (environ[ind])
 	{
@@ -59,7 +58,7 @@ char **copy_env(void)
 		if (!Nenvir[index])
 		{
 			for (index--; index >= 0; index--)
-				free(Nenvir[ind]);
+				free(Nenvir[index])
 			free(Nenvir);
 			return (NULL);
 		}

@@ -16,7 +16,7 @@ int current_env(char **args, char __attribute__((__unused__)) **begin)
 
 	for (index = 0; environ[index]; index++)
 	{
-		write(STDOUT_FILENO, environ[index], _strlen(environ[index]));
+		write(STDOUT_FILENO, environ[index], str_len(environ[index]));
 		write(STDOUT_FILENO, &new_line, 1);
 	}
 
@@ -43,7 +43,7 @@ int _setenv(char **args, char __attribute__((__unused__)) **begin)
 	_strcpy(new_count, args[0]);
 	_strcat(new_count, "=");
 	_strcat(new_count, args[1]);
-	env = get_env(args[0]);
+	env = getenv(args[0]);
 	if (env)
 	{
 		free(*env);
@@ -87,7 +87,7 @@ int _unsetenv(char **args, char __attribute__((__unused__)) **begin)
 
 	if (!args[0])
 		return (generate_error(args, -1));
-	env = get_env(args[0]);
+	env = getenv(args[0]);
 	if (!env)
 		return (0);
 	size = 0;

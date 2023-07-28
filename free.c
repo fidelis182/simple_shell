@@ -4,7 +4,7 @@
  * @head: beginning of list
  * Return: 0 on success
  */
-int free_list(list_t *head)
+int free_list(list *head)
 {
 	list *another;
 
@@ -12,7 +12,7 @@ int free_list(list_t *head)
 	{
 		another = head->another;
 		free(head->s);
-		free(head->count);
+		free(head->another);
 		free(head);
 		head = another;
 	}

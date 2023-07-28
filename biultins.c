@@ -7,8 +7,8 @@
 int (*get_builtin(char *command))(char **args, char **begin)
 {
 	biultin builtin_funcs[] = {
-		{ "cd", biultin_command},
-		{ "env", create_env},
+		{ "cd", builtin_command},
+		{ "env", free_env},
 		{ "exit", exit_biultin },
 		{ "setenv", _setenv },
 		{ "unsetenv", _unsetenv },
@@ -22,7 +22,7 @@ int (*get_builtin(char *command))(char **args, char **begin)
 		if (_strcmp(builtin_funcs[i].s, command) == 0)
 			break;
 	}
-	return (builtin_funcs[i].func);
+	return (builtin_funcs[i].funcp);
 } 
 
 /**
@@ -58,7 +58,7 @@ int exit_biultin(char **args, char **begin)
 	if (num > max - 1)
 		return (generate_error(--args, 2));
 	args -= 1;
-	free_args(args, begin);
+	run_args(args, begin);
 	free_env();
 	free_list(global_alias);
 	exit(num);
@@ -84,8 +84,8 @@ int builtin_command(char **args, char __attribute__((__unused__)) **begin)
 			if ((args[0][1] == '-' && args[0][2] == '\0') ||
 					args[0][1] == '\0')
 			{
-				if (get_env("OLDPWD") != NULL)
-					(chdir(*get_env("OLDPWD") + 7));
+				if (getenv("OLDPWD") != NULL)
+					(chdir(*getenv("OLDPWD") + 7));
 			}
 			else
 			{
@@ -107,8 +107,8 @@ int builtin_command(char **args, char __attribute__((__unused__)) **begin)
 	}
 	else
 	{
-		if (get_env("HOME") != NULL)
-			chdir(*(ge_env("HOME")) + 5);
+		if (getenv("HOME") != NULL)
+			chdir(*(getenv("HOME")) + 5);
 	}
 	return (changeDirectory(args, pwd, old_pwd));
 }
@@ -141,7 +141,7 @@ int changeDirectory(char **args, char *pwd, char *old_pwd)
 		return (-1);
 	if (args[0] && args[0][0] == '-' && args[0][1] != '-')
 	{
-		write(STDOUT_FILENO, pwd, _strlen(pwd));
+		write(STDOUT_FILENO, pwd, str_len(pwd));
 		write(STDOUT_FILENO, new_line, 1);
 	}
 	free(old_pwd);

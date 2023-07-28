@@ -21,7 +21,7 @@ int arguments(int *command)
 	if (check_args(args) != 0)
 	{
 		*command = 2;
-		free_args(args, args);
+		run_args(args, args);
 		return (*command);
 	}
 	begin = args;
@@ -118,7 +118,7 @@ int call_args(char **args, char **begin, int *command)
 		if (_strncmp(args[index], "||", 2) == 0)
 		{
 			free(args[index]), args[index] = NULL, args = _replace_alias(args);
-			command_return = run_ar(args, begin, command);
+			command_return = run_args(args, begin, command);
 			if (*command != 0)
 			{
 				args = &args[++index], index = 0;

@@ -20,20 +20,20 @@ int generate_error(char **args, int error_value)
 		break;
 	case 2:
 		if (*(args[0]) == 'e')
-			err = exit_error(++args);
+			err = error_exit (+rargs);
 		else if (args[0][0] == ';' || args[0][0] == '&' || args[0][0] == '|')
 			err = syntax_error(args);
 		else
 			err = command_error(args);
 		break;
 	case 126:
-		err = denied_permissionargs);
+		err = denied_permission);
 		break;
 	case 127:
 		err = command_error(args);
 		break;
 	}
-	write(STDERR_FILENO, err, _strlen(err));
+	write(STDERR_FILENO, err, str_len(err));
 
 	if (err)
 		free(err);
@@ -72,7 +72,7 @@ char *_itoa(int num)
 	do {
 		buff[length] = (num1 % 10) + '0';
 		num1 /= 10;
-		len--;
+		length--;
 	} while (num1 > 0);
 
 	return (buff);

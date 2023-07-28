@@ -2,27 +2,20 @@
 #define _SIMPLE_SHELL_H
 
 extern char **environ;
-char *s;
-int global_history;
-alias *global_alias;
 
 
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <sys/wait.h>
-#include <fcntl.h>
-#include <unistd.h>
 #include <stdio.h>
+#include <unistd.h>
 #include <stdlib.h>
-#include <string.h>
+#include <fcntl.h>
+#include <errno.h>
 #include <signal.h>
-#include <stdbool.h>
+#include <sys/types.h>
+#include <sys/wait.h>
+#include <sys/stat.h>
 
 
-struct flags
-{
-        bool interactive;
-} flags;
+
 /**
  * struct builtin - defining builtin
  * @s: source of builtin
@@ -58,6 +51,10 @@ typedef struct lists
         struct lists *another;
 } list;
 
+char *s;
+int global_history;
+alias *global_alias;
+
 void print_result(int n);
 int main(int ac, char **av[]);
 void free_env(void);
@@ -85,7 +82,7 @@ int num_length(int num);
 int file_comment(char *file, int *addrep);
 int split_CallAndFree(ssize_t a, char *line, int *addrep, unsigned int new);
 int free_list(list *head);
-char *denied_permission(char **args;
+char *denied_permission(char **args);
 char *command_error(char **args);
 int arguments(int *command);
 char *get_args(char *line, int *command);

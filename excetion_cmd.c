@@ -1,4 +1,4 @@
-#include "simple_shell.c"
+#include "simple_shell.h"
 
 /**
  * file_comment - runs a command in a file
@@ -69,7 +69,7 @@ int split_CallAndFree(ssize_t a, char *line, int *addrep, unsigned int new)
 	if (check_args(args) != 0)
 	{
 		*addrep = 2;
-		free_args(args, args);
+		run_args(args, args);
 		return (*addrep);
 	}
 	begin = args;

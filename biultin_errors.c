@@ -10,11 +10,11 @@ char *error_exit(char **args)
 	char *err, *history_str;
 	int length;
 
-	history_str = -itoa(global_history);
+	history_str = _itoa(global_history);
 	if (!history_str)
 		return (NULL);
 
-	length = _strlen(s) + _strlen(history_str) + _strlen(args[0]) + 27;
+	length = str_len(s) + str_len(history_str) + str_len(args[0]) + 27;
 	err = malloc(sizeof(char) * (length + 1));
 	if (!err)
 	{
