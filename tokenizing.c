@@ -39,7 +39,7 @@ char **tokenizing(char *new_line)
 			free(tokens);
 			return (NULL);
 		}
-		token = _strtok(NULL, delimiter);
+		token = strtok(NULL, delimiter);
 		ind++;
 	}
 	tokens[ind] = '\0';

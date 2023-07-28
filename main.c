@@ -25,7 +25,7 @@ int main(int ac, char **av, char *envp[])
 		free_buff(paths);
 		free(pathcd);
 		prompt();
-		linesize = get_line(&new_line, &buffersize, stdin);
+		linesize = getline(&new_line, &buffersize, stdin);
 		if (linesize < 0)
 			break;
 		info.ln_count++;
