@@ -99,5 +99,15 @@ int _strcmp(char *string1, char *string2);
 char *_strncat(char *dest, char *src, int n);
 char *_strcat(char *dest, char *src);
 int _strncmp(char *string1, char *string2, size_t n);
+int counting_token(char *s1, char *delimit);
+int token_length(char *s1, char *delimit);
+void *realloc(void *p, unsigned int former, unsigned int nw);
+ssize_t _get_line(char **ptr, size_t *num, FILE *stream);
+void reassigning(char **ptr, size_t *num, char *buffer, size_t pass);
+int _split_line(size_t i, size_t j, char current,
+		char next, char *old_line, char *new_line);
+int splitpipe(size_t j, char prev, char next, char *new_line);
+int split_and(size_t j, char prev, char next, char *new_line);
+int split_line_column(size_t j, char prev, char next, char *new_line);
 
 #endif
